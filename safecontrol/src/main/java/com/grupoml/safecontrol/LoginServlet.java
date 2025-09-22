@@ -38,10 +38,10 @@ public class LoginServlet extends HttpServlet {
 
                 try (ResultSet rs = stmt.executeQuery()) {
                     if (rs.next()) {
-                        // Credenciales válidas → crear sesión y redirigir
+                        // ✅ Credenciales válidas → crear sesión y redirigir al dashboard
                         HttpSession session = request.getSession(true);
                         session.setAttribute("user", username);
-                        response.sendRedirect(request.getContextPath() + "/welcome.jsp");
+                        response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
                         return;
                     }
                 }
@@ -51,10 +51,9 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("error", "Usuario o contraseña incorrectos");
             request.setAttribute("lastUsername", username);
             request.getRequestDispatcher("/login.jsp").forward(request, response);
-            return;
 
         } catch (Exception e) {
-            // Error en conexión/consulta → devolver 500 con causa
+            // ⚠️ Error en conexión/consulta → devolver 500 con causa
             throw new ServletException("Error en el inicio de sesión", e);
         }
     }

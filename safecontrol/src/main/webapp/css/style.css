@@ -1,0 +1,119 @@
+/* ===========================
+   SafeControl — Estilos globales
+   =========================== */
+
+/* Variables */
+:root{
+  --bg:#0b0e13;          /* fondo app */
+  --panel:#141821;       /* paneles oscuros */
+  --panel2:#0f1320;
+  --border:#273043;
+  --txt:#eaeaea;
+  --muted:#98a2b3;
+  --brand:#c6a648;       /* amarillo marca */
+  --accent:#f0c041;      /* acento / logout */
+  --ok:#33c27f;
+  --warn:#f0c041;
+  --danger:#e05a5a;
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--txt);
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+/* ===== Header (dashboard) ===== */
+header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 18px; background:#0f1218; border-bottom:1px solid var(--border);
+}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700}
+.logout{
+  background:var(--accent); color:#141821; border:0; border-radius:8px;
+  padding:8px 12px; font-weight:700; cursor:pointer;
+}
+
+/* ===== Layout principal (dashboard) ===== */
+.layout{display:grid; grid-template-columns:260px 1fr; gap:14px; padding:14px}
+aside{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:12px}
+.m-title{font-size:12px; color:var(--muted); letter-spacing:.08em; margin:2px 0 8px}
+
+/* Menú lateral */
+.menu{display:flex; flex-direction:column; gap:8px}
+.menu a{
+  display:block; padding:10px 12px; border-radius:8px;
+  color:#d7d7d7; text-decoration:none;
+  background:#141a25; border:1px solid #1f2a3b;
+}
+.menu a:hover{background:#121826; border-color:#1f2937}
+.menu a.active{background:#1d2432; border-color:var(--brand); box-shadow:0 0 0 1px var(--brand) inset}
+
+/* Panel contenedor del iframe */
+main{display:flex; flex-direction:column; gap:12px}
+.panel{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px}
+.panel h2{margin:0 0 10px}
+#loader{display:none; color:var(--muted); font-style:italic; margin-bottom:8px}
+
+/* Iframe del panel: altura controlada para que las modales quepan */
+iframe#panelFrame{
+  width:100%; height:88vh; border:0; border-radius:10px; background:var(--panel2);
+}
+
+/* ===== Componentes comunes (módulos) ===== */
+.wrap{padding:14px}
+.title{font-weight:700; margin:6px 0 12px}
+.card{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px}
+.toolbar{display:flex; gap:8px; align-items:center; margin-bottom:12px}
+
+.btn{
+  background:var(--brand); color:#111; border:0; border-radius:8px;
+  padding:8px 12px; font-weight:700; cursor:pointer;
+}
+.btn.gray{background:#2a3344; color:#eaeaea}
+.btn.ok{background:var(--ok); color:#111}
+.btn.warn{background:var(--warn); color:#111}
+.btn.danger{background:var(--danger)}
+
+input[type="text"], input[type="email"], input[type="date"],
+input[type="password"], select, textarea{
+  width:100%; background:#0f1320; border:1px solid var(--border);
+  color:var(--txt); border-radius:8px; padding:8px 10px; outline:none;
+}
+textarea{min-height:70px; resize:vertical}
+.search{flex:1}
+
+table{width:100%; border-collapse:collapse}
+th,td{padding:10px; border-bottom:1px solid var(--border); text-align:left}
+th{color:var(--muted); font-weight:600}
+tr:hover{background:#0f1320}
+.actions{display:flex; gap:6px}
+
+/* ===== Modal única para toda la app ===== */
+/* backdrop */
+.modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+        background:rgba(0,0,0,.55); z-index:99999; }
+.modal.open{ display:flex; }
+
+.modal-card{
+  width:min(760px,92vw);
+  max-height:calc(100vh - 32px);   /* usa casi todo el alto del iframe */
+  background:var(--panel);
+  color:var(--txt);
+  border:1px solid var(--border);
+  border-radius:12px;
+  box-shadow:0 12px 32px rgba(240, 226, 226, 0.6);
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.modal-hd{ padding:14px 16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.modal-bd{ flex:1 1 auto; padding:16px; overflow:auto; }   /* << scroll interno si hace falta */
+.modal-ft{
+  flex:0 0 auto; position:sticky; bottom:0;
+  background:inherit; border-top:1px solid rgba(255,255,255,.08);
+  padding:12px 16px; display:flex; gap:10px; justify-content:flex-end;
+}
+.close{background:none; border:0; color:#fff; font-size:22px; cursor:pointer}
