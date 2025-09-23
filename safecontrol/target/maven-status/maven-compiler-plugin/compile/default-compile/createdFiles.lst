@@ -1,7 +1,0 @@
-com\grupoml\safecontrol\LoginServlet.class
-com\grupoml\safecontrol\DatabaseConnection$Auth0Config.class
-com\grupoml\safecontrol\DatabaseConnection.class
-com\grupoml\safecontrol\CallbackServlet.class
-com\grupoml\safecontrol\LogoutServlet.class
-com\grupoml\safecontrol\ForgotPasswordServlet.class
-com\grupoml\safecontrol\ResetPasswordServlet.class
